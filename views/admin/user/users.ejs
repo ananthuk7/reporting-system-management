@@ -1,0 +1,72 @@
+<% include ../../partials/admin/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title">
+                  <h3>Users</h3>  
+                </div>
+                <div>
+                    <a href="/users/add" class="btn bg-color-pr text-white me-auto">Add New</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Role</th>
+                                <th scope="col">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if (data.length){for (var i=0; i < data.length ; i++) { %>
+                                <tr scope="row">
+                                    <td style="width:70px">
+                                        <%= data[i].userId %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].username %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].email %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].phone %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].role %>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline mb-0 d-flex">
+                                            <li class="list-inline-item "><a class="f-s-20px"
+                                                    href="/users/view/<%= data[i].userId%>"><i
+                                                        class="fa-solid fa-eye"></i></a></li>
+                                            <li class="list-inline-item "> <a class="f-s-20px"
+                                                    href="/users/edit/<%= data[i].userId%>"><i
+                                                        class="fa-solid fa-pen"></i></a></li>
+                                            <li class="list-inline-item "> <a class="f-s-20px"
+                                                    href="/users/delete/<%= data[i].userId%>"><i
+                                                        class="fa-solid fa-trash-can"></i></a>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <%} }else { %>
+                                    <td>no users list</td>
+                                    <% } %>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <% include ../../partials/admin/footer.ejs %>

@@ -1,0 +1,32 @@
+<% include ../../partials/staff/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto w-lg-50 mb-5">
+            <div class="card-header">
+                <div class="card-title">
+                    <h1 class="main-heading text-uppercase head-size"> enquiry</h1>
+                </div>
+            </div>
+            <div class="card-body">
+                <form action="/students/status/<%= id[0]%>" class="form" method="post">
+                    <div class="mb-3">
+                        <select name="status" id="" class="form-select">
+                            <option value="active">active</option>
+                            <option value="droped">droped</option>
+                            <option value="completed">completed</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <div class="row">
+                            <div class="col-sm-6 mt-2">
+                                <label for="">End Date</label>
+                                <input class="form-control" type="date" placeholder="End Date" name="endDate" required>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn bg-color-pr  float-end">submit</button>
+                </form>
+                <button class="btn bg-color-scs  float-end me-2" onclick="window.history.back()">Back</button>
+            </div>
+        </div>
+    </div>
+    <% include ../../partials/staff/footer.ejs %>

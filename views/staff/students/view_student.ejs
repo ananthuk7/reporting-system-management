@@ -1,0 +1,81 @@
+<% include ../../partials/staff/header.ejs %>
+    <div class="container mt-5">
+
+        <div class="card   w-lg-50 mx-auto">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-6 col-sm-1">
+                        <img src="/images/prof.jpg" alt="" class="img-responsive">
+                        <div class="mt-3">
+                            <b>Name :</b>
+                            <%= data[0].name%>
+                        </div>
+                        <div class="mt-3">
+                            <b>Email :</b>
+                            <%= data[0].email%>
+                        </div>
+                        <div class="mt-3">
+                            <b> DOB :</b>
+                            <%= data[0].dob.toLocaleDateString() %>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-1">
+                        <div class="mt-3">
+                            <b>Address :</b>
+                            <%= data[0].address%>
+                        </div>
+                        <div class="mt-3">
+                            <b> Gender :</b>
+                            <%= data[0].gender%>
+                        </div>
+                        <div class="mt-3">
+                            <b> Phone :</b>
+                            <%= data[0].contactNo%>
+                        </div>
+                        <!-- <div class="mt-3">
+                        <b> Course :</b> Python
+                     </div> -->
+                        <div class="mt-3">
+                            <b> State :</b>
+                            <%= data[0].state%>
+                        </div>
+                        <div class="mt-3">
+                            <b> Qualification :</b>
+                            <%= data[0].qualification%>
+                        </div>
+                        <div class="mt-3">
+                            <b> Courese :</b>
+                            <%= data[0].course%>
+                        </div>
+                        <div class="mt-3">
+                            <% var st %>
+                                <% st=data[0].Cstatus %>
+                                    <b> Status :</b>
+                                    <% if (st == 'completed' ) { %>
+                                        <span class="badge bg-warning">
+                                            <%= data[0].Cstatus%>
+                                        </span>
+                                        <% } else if (st == 'droped' ) { %>
+                                            <span class="badge bg-color-dgr">
+                                                <%= data[0].Cstatus%>
+                                            </span>
+                                        <%} else if (st == 'active' ) { %>
+                                                <span class="badge bg-color-scs">
+                                                    <%= data[0].Cstatus%>
+                                                </span>
+                                        <%} else { %>
+                                        <span>
+                                            not added
+                                        </span>
+                                        <% } %>
+                        </div>
+                        <div class="mt-3">
+                            <a href="/students/status/<%= data[0].id %>" class="btn bg-color-scs text-white">Edit
+                                Status</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% include ../../partials/staff/footer.ejs %>

@@ -1,0 +1,98 @@
+<% include ../../partials/staff/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title">
+                 <h3>Enrolled Students</h3>  
+                </div>
+                <!-- <div>
+                <a href="./add_student.html" class="btn bg-color-pr text-white me-auto">add Student</a>
+            </div> -->
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Slno:</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Course</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                <th scope="col">Status</th>
+                                <!-- <th scope="col">Actions</th> -->
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(data.length){for(var i=0;i < data.length; i++){ %>
+                                <tr scope="row">
+                                    <td style="width:70px">
+                                        <%= i+1 %>
+                                    </td>
+                                    <td>
+                                        <%= data[i].name%>
+                                    </td>
+                                    <td>
+                                        <%= data[i].email%>
+                                    </td>
+                                    <td>
+                                        <%= data[i].contactNo%>
+                                    </td>
+                                    <td>
+                                        <%= data[i].course%>
+                                    </td>
+                                    <td>
+                                        <%= data[i].startDate.toLocaleDateString()%>
+                                    </td>
+                                    <td>
+                                        <%= data[i].EndDate.toLocaleDateString()%>
+                                    </td>
+                                    <td>
+                                        <% var st %>
+                                        <% st=data[i].Cstatus %>
+                                           
+                                            <% if (st == 'completed' ) { %>
+                                                <span class="badge bg-warning">
+                                                    <%= data[i].Cstatus%>
+                                                </span>
+                                                <% } else if (st == 'droped' ) { %>
+                                                    <span class="badge bg-color-dgr">
+                                                        <%= data[i].Cstatus%>
+                                                    </span>
+                                                <%} else if (st == 'active' ) { %>
+                                                        <span class="badge bg-color-scs">
+                                                            <%= data[i].Cstatus%>
+                                                        </span>
+                                                <%} else { %>
+                                                <span>
+                                                    not added
+                                                </span>
+                                                <% } %>
+                                    </td>
+                                    <td>
+                                        <ul class="list-inline mb-0 d-flex">
+                                            <!-- <li class="list-inline-item "><a class="f-s-20px" href="./view_enroll.html"><i
+                                                class="fa-solid fa-eye"></i></a></li> -->
+                                            <!-- <li class="list-inline-item "> <a class="f-s-20px" href="./edit_enroll.html"><i
+                                                class="fa-solid fa-pen"></i></a></li> -->
+                                            <!-- <li class="list-inline-item "> <a class="f-s-20px" href="./delete_enroll.html"><i
+                                                class="fa-solid fa-trash-can"></i></a></li> -->
+                                        </ul>
+                                    </td>
+                                </tr>
+                                <%}} else{ %>
+                                    <p class="text-center">no enquires avilable</p>
+                                    <% } %>
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <% include ../../partials/staff/footer.ejs %>

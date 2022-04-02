@@ -1,0 +1,91 @@
+<% include ../../partials/staff/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto">
+            <div class="card-header d-flex justify-content-between">
+                <div class="card-title">
+                  <h3>Students</h3> 
+                </div>
+                <div>
+                    <a href="/students/add" class="btn bg-color-pr text-white me-auto">Add New</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-bordered">
+                        <thead class="table-light">
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Qualification</th>
+                                <th scope="col">DOB</th>
+                                <th scope ="col">Status</th>
+                                <th scope="col">Actions</th>
+                                <th scope="col">Enquiry</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% if(data.length){ for (var i=0 ; i < data.length ; i++) { %>
+                            <tr scope="row">
+                                <td style="width:70px"><%= i+1 %></td>
+                                <td><%= data[i].name %></td>
+                                <td><%= data[i].email %></td>
+                                <td><%= data[i].contactNo %></td>
+                                <td><%= data[i].qualification %></td>
+                                <td><%= data[i].dob.toLocaleDateString() %></td>
+                                <td>
+                                    <% var st %>
+                                    <% st=data[0].Cstatus %>
+                                       
+                                        <% if (st == 'completed' ) { %>
+                                            <span class="badge bg-warning">
+                                                <%= data[0].Cstatus%>
+                                            </span>
+                                            <% } else if (st == 'droped' ) { %>
+                                                <span class="badge bg-color-dgr">
+                                                    <%= data[0].Cstatus%>
+                                                </span>
+                                            <%} else if (st == 'active' ) { %>
+                                                    <span class="badge bg-color-scs">
+                                                        <%= data[0].Cstatus%>
+                                                    </span>
+                                            <%} else { %>
+                                            <span>
+                                                not added
+                                            </span>
+                                            <% } %>
+                                </td>
+                                <td>
+                                    <ul class="list-inline mb-0 d-flex">
+                                        <li class="list-inline-item "><a class="f-s-20px"
+                                                href="/students/view/<%= data[i].id%>"><i
+                                                    class="fa-solid fa-eye"></i></a></li>
+                                        <!-- <li class="list-inline-item "> <a class="f-s-20px"
+                                                href="/students/edit/<%= data[i].id%>"><i
+                                                    class="fa-solid fa-pen"></i></a></li> -->
+                                        <li class="list-inline-item "> <a class="f-s-20px"
+                                                href="/students/delete/<%= data[i].id%>"><i
+                                                    class="fa-solid fa-trash-can"></i></a>
+                                        </li>
+                                    </ul>
+                                </td>
+                                <% if (data[i].enquiry == false) { %>
+                                <td><a href="/enrolls/add/<%= data[i].id%>" class="btn bg-color-pr text-white">Enroll</a></td>
+                                <%}%>
+                            </tr>
+                            <%} } else { %>
+                                <td>no data</td>
+                            <% } %>
+
+                        </tbody>
+
+                    </table>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <% include ../../partials/staff/footer.ejs %>

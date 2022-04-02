@@ -1,0 +1,47 @@
+<% include ./partials/admin/header.ejs %>
+
+    <div class="container">
+        <div class="login-wrapper" style="background:#fff;">
+            <div class="row">
+                <div class="col-md-6 col-sm-12">
+                    <div class="login-img-wrapper">
+                        <img src="/images/38055161.jpg" alt="">
+                    </div>
+                </div>
+                <div class="col-md-6 col-sm-12"  >
+
+                    <div class="login-content-wrapper" >
+                        <form action="/users/login" method="post">
+                            <%var message;%>
+                                <%if(message){ %>
+                                    <div class="alert alert-danger alert-dismissible fade show py-1" role="alert">
+                                        <%= message%>
+                                            <button type="button" class="btn-close p-2" data-bs-dismiss="alert"
+                                                aria-label="Close"></button>
+                                    </div>
+
+                                    <%}%>
+                                        <div class="mb-3">
+                                            <!-- <label for="">Name</label> -->
+                                            <input class="form-control" type="text" placeholder="username"
+                                                name="username" required style="border-bottom-color:rgb(239, 186, 163)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <!-- <label for="">Phone</label> -->
+                                            <input class="form-control" type="password" placeholder="password"
+                                                name="password" required style="border-bottom-color:rgb(239, 186, 163)">
+                                        </div>
+                                        <div class="mb-3">
+                                            <button type="submit"
+                                                class="btn bg-color-pr text-white d-block w-50 mx-auto">Login</button>
+                                            <!-- <p class="text-center mt-3">Dont have accout <a href="/users/add" class="text-danger">Register</a></p> -->
+                                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <% include ./partials/admin/footer.ejs %>

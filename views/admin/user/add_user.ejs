@@ -1,0 +1,63 @@
+<% include ../../partials/admin/header.ejs %>
+    <div class="container mb-5">
+        <div class="card mt-5 mx-auto w-lg-50">
+            <div class="card-header">
+                <div class="card-title">
+                    <h1 class="main-heading text-uppercase head-size"> Add New</h1>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <%var message;%>
+                    <%if(message){ %>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <%= message%>
+                                <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                    aria-label="Close"></button>
+                        </div>
+
+                        <%}%>
+
+
+                            <form action="/users/add" method="post" class="form" en>
+
+                                <div class="mb-3">
+                                    <label for="">Name</label>
+                                    <input class="form-control" type="text" name="username" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Email</label>
+                                    <input class="form-control" type="email" name="email" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Phone</label>
+                                    <input class="form-control" type="text" name="phone" required>
+                                </div>
+                                <div class="mb-3">
+                                    <select for="" class="form-select" name="role" required>
+                                        <option value="">Role</option>
+                                        <option value="admin">admin</option>
+                                        <option value="faculity">faculity</option>
+
+                                    </select>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Password</label>
+                                    <input class="form-control" type="password" name="password" required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="">Confirm Password</label>
+                                    <input class="form-control" type="password" name="password1" required>
+                                </div>
+                                <button type="submit" class="btn bg-color-pr  float-end">submit</button>
+                            </form>
+                            <button class="btn bg-color-scs  float-end me-2"
+                                onclick="window.history.back()">Back</button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <% include ../../partials/admin/footer.ejs %>

@@ -1,0 +1,55 @@
+<% include ../../partials/admin/header.ejs %>
+<div class="container">
+    <div class="card mt-5 mx-auto w-lg-50 mb-5">
+        <div class="card-header">
+            <div class="card-title">
+                <h1 class="main-heading text-uppercase head-size"> Edit Course</h1>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form action="/courses/update/<%= data[0].courseId %>" class="form" method="post">
+                <div class="mb-3">
+                    <label for="">Course Name</label>
+                    <input class="form-control" type="text" name="courseName" value="<%= data[0].courseName %>">
+                </div>
+                <div class="mb-3">
+                    <label for="">Duration</label>
+                    <input class="form-control" type="text" name="duration" value="<%= data[0].duration %>">
+                </div>
+                <!-- <div class="mb-3">
+                    <label for="">Image</label>
+                    <input class="form-control" type="file" accept="image/*">
+                </div> -->
+                <div class="mb-3">
+                    <label for="">Fees</label>
+                    <input class="form-control" type="text" name="fees" value="<%= data[0].fees %>">
+                </div>
+                <!-- <div class="mb-3">
+                    <div class="row">
+                        <div class="col-sm-6 mt-2">
+                            <label for="">Start Date</label>
+                            <input class="form-control" type="date" placeholder="Start Date" name="startDate" value="<%= data[0].StartDate %>">
+                        </div>
+                        <div class="col-sm-6 mt-2">
+                            <label for="">End Date</label>
+                            <input class="form-control" type="date" placeholder="End Date" name="endDate" value="<%= data[0].endDate %>">
+                        </div>
+                    </div> 
+                </div> -->
+                <div class="mb-3">
+                    <label for="">Description</label>
+                    <textarea class="form-control" rows="5" name="description"> <%= data[0].descriptions %> </textarea>
+                </div>
+                <button type="submit" class="btn bg-color-pr  float-end">submit</button>
+                
+            </form>
+            <button class="btn bg-color-scs  float-end me-2" onclick="window.history.back()">Back</button>
+           
+        </div>
+
+    </div>
+
+</div>
+
+<% include ../../partials/admin/footer.ejs %>

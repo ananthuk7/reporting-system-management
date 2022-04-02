@@ -1,0 +1,151 @@
+:root{
+  --primary-color:#556ee6;
+  --success-color:#34c38f;
+  --danger-color:#f46a6a;
+  --bg-danger:rgba(244, 106, 106,1);
+  --text-color:#495057;
+  --white-color:#fff;
+  --border-shadow:box-shadow: 0 0.75rem 1.5rem rgb(18 38 63 / 3%);
+}
+
+p,a,td,button{
+  font-size: 14px;
+  color:var(--text-color);
+  font-weight: 500;
+}
+.form-control:disabled, .form-control[readonly] {
+  background-color: #e9ecef93;
+  opacity: 1;
+}
+.main-heading{
+  font-size:2rem;
+}
+.bg-color-pr{
+  background-color:var(--primary-color);
+}
+.bg-color-scs{
+  background-color:var(--success-color)
+}
+.bg-color-dgr{
+  background-color:var(--danger-color)
+}
+.bg-color-grey{
+  background-color:#F2F2F5;
+
+  
+}
+.color-pri{
+  color:var(--primary-color);
+}
+.navbar-brand{
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: uppercase;
+  color:var(--white-color) !important;
+
+}
+.nav-link{
+  color:var(--white-color) !important;
+}
+.abc-heading{
+  font-size: 2.5rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 900;
+}
+.main-head{
+  font-size: 3rem;
+  color: var(--primary-color);
+  text-transform: uppercase;
+  font-weight: 700;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 3rem;
+ 
+  
+}
+.abc-wrapper > p{
+  line-height: 2;
+  font-size: 1rem;
+}
+
+.w-lg-50{
+  width:50%;
+}
+
+#courses{
+  height:300px;
+  background-image:linear-gradient(rgba(0,0,0,0.8),rgba(0,0,0,0.5)),url('../images/course.jpg');
+ 
+}
+
+.contact-wrapper{
+  width:90%;
+  margin-top: 5rem;
+  margin-bottom: 4rem;
+}
+.contact-wrapper .form-control,
+
+.modal-body .form-control,
+
+.form-select{
+  border:none;
+  border-bottom: 2px solid var(--primary-color);
+  border-radius: 0;
+}
+.form-control:focus ,.form-select:focus{
+  color: #212529;
+  background-color: #fff;
+  border-color: none;
+  outline: 0;
+  box-shadow: none;
+}
+.contact-image-wrapper img {
+  object-fit: cover;
+  width:100%;
+  display: block;
+  margin: 2.5rem auto 0;
+}
+
+@media screen and (max-width:1100px){
+  .abc-wrapper{
+      padding: 1rem;
+  }
+  
+.abc-wrapper > p {
+  line-height: 1.5;
+  font-size: 1rem;
+}
+}
+@media screen and (max-width:765px){
+  .abc-heading{
+      text-align: center;
+  }
+  .abc-wrapper > p {
+      line-height: 1.6;
+      font-size: 1rem;
+      text-align: justify;
+  }
+  .img-fluid-s{
+      display: block;
+      margin:0 auto 1rem;
+      height:400px;
+
+  }
+  
+}
+
+
+@media screen and (max-width:575px){
+  .head-contact{
+      text-align:center;
+      font-weight:bold;
+  }
+}
+
+@media screen and (max-width:450px){
+
+  .w-lg-50{
+      width:100%;
+  }
+}

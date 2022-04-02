@@ -1,0 +1,41 @@
+<% include ../../partials/admin/header.ejs %>
+<div class="container">
+    <div class="card mt-5 mx-auto w-lg-50 mb-5">
+        <div class="card-header">
+            <div class="card-title">
+                <h1 class="main-heading text-uppercase head-size"> Add New</h1>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <form action="/courses/" class="form" method="post">
+                <div class="mb-3">
+                    <label for="">Course Name</label>
+                    <input class="form-control" type="text" name="courseName">
+                </div>
+                <div class="mb-3">
+                    <label for="">Duration</label>
+                    <input class="form-control" type="text" name="duration">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="">Fees</label>
+                    <input class="form-control" type="text" name="fees">
+                </div>
+                
+                <div class="mb-3">
+                    <label for="">Description</label>
+                    <textarea class="form-control" rows="5" name="description"></textarea>
+                </div>
+                <button type="submit" class="btn bg-color-pr  float-end">submit</button>
+                
+            </form>
+            <button class="btn bg-color-scs  float-end me-2" onclick="window.history.back()">Back</button>
+           
+        </div>
+
+    </div>
+
+</div>
+
+<% include ../../partials/admin/footer.ejs %>

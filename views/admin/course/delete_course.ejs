@@ -1,0 +1,19 @@
+<% include ../../partials/admin/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto w-lg-50">
+            <div class="card-body text-center">
+                <form action="/courses/delete/<%= id%>" method="post" class="form">
+                    <p>Are you sure you want to delete "<%= data[0].courseName%>" ?</p>
+                    <button type="submit" class="btn bg-color-dgr text-white">Confirm</button>
+                </form>
+
+                <button class="btn bg-color-scs text-white ms-2" style="position: absolute;top: 53px;right: 215px;"
+                    onclick="window.history.back()">Back</button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <% include ../../partials/admin/footer.ejs %>

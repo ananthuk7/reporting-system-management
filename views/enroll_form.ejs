@@ -1,0 +1,64 @@
+<% include ./partials/header.ejs%>
+    <div class="card mt-5 mx-auto w-lg-50 mb-5 p-2">
+        <div class="card-title">
+            <h4 class="modal-title"> <b>Enrollment Form</b></h4>
+        </div>
+        <div class="card-body">
+            <form action="/enrolls/student/enroll/add/" method="post">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="">Name</label>
+                            <input class="form-control" type="text" name="firstname">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Email</label>
+                            <input class="form-control" type="email" name="email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Contact No:</label>
+                            <input class="form-control" type="text" name="contact">
+                        </div>
+                        <div class="mb-3">
+                         
+                            <label for="">Course</label>
+                            <input class="form-control" type="text" value="<%= data[0].courseName%>" name="course">
+
+                        </div>
+                        <div class="mb-3">
+                            <label for=""></label>
+                            <textarea class="form-control" rows="5" placeholder="Address" name="address"></textarea>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="">DOB</label>
+                            <input class="form-control" type="date" name="dob">
+                        </div>
+                        <div class="mb-3">
+                            <label for="" class="mt-3 mb-4">Gender</label> <br>
+                            <input type="radio" value="male" name="gender">Male
+                            <input type="radio" value="female" name="gender">Female
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Qualification</label>
+                            <input class="form-control" type="text" name="qualification">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">State</label>
+                            <input class="form-control" type="text" name="state">
+                        </div>
+                        <div class="mb-3">
+                            <label for="">Guardian Name</label>
+                            <input class="form-control" type="text" name="guardian">
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn bg-color-pr text-white mx-auto d-block w-50">Register</button>
+
+            </form>
+        </div>
+    </div>
+
+
+    <% include ./partials/footer.ejs%>

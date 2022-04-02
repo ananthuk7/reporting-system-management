@@ -1,0 +1,52 @@
+<% include ../../partials/admin/header.ejs %>
+    <div class="container">
+        <div class="card mt-5 mx-auto w-lg-50">
+            <div class="card-header">
+                <div class="card-title">
+                    <h1 class="main-heading text-uppercase head-size"> Edit User</h1>
+                </div>
+            </div>
+
+            <div class="card-body">
+                <form action="/users/edit/<%= data[0].userId %>" method="post" class="form">
+                    <div class="mb-3">
+                        <label for="">Name</label>
+                        <input class="form-control" type="text" name="username" value="<%= data[0].username%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Email</label>
+                        <input class="form-control" type="email" name="email" value="<%= data[0].email%>">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Phone</label>
+                        <input class="form-control" type="text" name="phone" value="<%= data[0].phone%>">
+                    </div>
+                    <div class="mb-3">
+                        <select for="" class="form-select" name="role">
+                            <% var options=["faculity", "admin" ]; for ( var i=0; i < options.length; i++ ) { var
+                                isSelected=( data[0].role==options[i] ) ? "selected" : "" ; %>
+
+                                <option value="<%=options[i]%>" <%=isSelected %>>
+                                    <%= options[i] %>
+                                </option>
+                                <% } %>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="">new Password</label>
+                        <input class="form-control" type="password" name="password">
+                    </div>
+                    <div class="mb-3">
+                        <label for="">Confirm Password</label>
+                        <input class="form-control" type="password" name="password1">
+                    </div>
+                    <button type="submit" class="btn bg-color-pr  float-end">submit</button>
+                </form>
+                <button class="btn bg-color-scs  float-end me-2" onclick="window.history.back()">Back</button>
+
+            </div>
+
+        </div>
+
+    </div>
+    <% include ../../partials/admin/footer.ejs %>

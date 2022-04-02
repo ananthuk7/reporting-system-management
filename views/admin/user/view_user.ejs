@@ -1,0 +1,48 @@
+<% include ../../partials/admin/header.ejs %>
+<div class="container mt-5">
+
+    <div class="card   w-lg-50 mx-auto">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6 col-sm-1">
+                    <img src="/images/prof.jpg" alt="" class="img-responsive">
+                    
+                    <!-- <div class="mt-3">
+                        <b> DOB :</b> 04-09-1998
+                     </div> -->
+                </div>
+                <div class="col-md-6 col-sm-1">
+                    <!-- <div class="mt-3">
+                       <b>Address :</b>  Lorem ipsum, dolor sit amet consectetur adipisicing elit. Officia aliquam laborum
+                        molestias
+                    </div> -->
+                    <div class="mt-3">
+                        <b>Name :</b>  <%= data[0].username %>
+                     </div>
+                     <div class="mt-3">
+                       <b>Email :</b>   <%= data[0].email %>
+                     </div>
+                    <!-- <div class="mt-3">
+                        <b> Gender :</b> <%= data[0].name %>
+                     </div> -->
+                     <div class="mt-3">
+                        <b> Role : <%= data[0].role %>
+                     </div>
+                    <div class="mt-3">
+                       <b> Phone :</b> <%= data[0].phone %>
+                    </div>
+                    <!-- <div class="mt-3">
+                        <b> Course :</b> Python
+                     </div> -->
+                     <!-- <div class="mt-3">
+                        <b> Country :</b> India
+                     </div> -->
+                     <!-- <div class="mt-3">
+                        <b> Qualification :</b> B.Tech
+                     </div> -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../../partials/admin/footer.ejs %>

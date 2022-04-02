@@ -1,0 +1,16 @@
+<% include ../../partials/admin/header.ejs %>
+    <div class="container mt-5">
+        <div class="card mx-auto w-lg-50">
+            <img src="/images/python-1588143191.jpg" alt="" class="card-img-top">
+            <div class="card-body">
+                <h5 class="card-title text-capitalize">
+                    <%= data[0].courseName %>
+                </h5>
+                <p class="card-text"> <%= data[0].descriptions %></p>
+
+
+            </div>
+        </div>
+
+    </div>
+    <% include ../../partials/admin/footer.ejs %>
