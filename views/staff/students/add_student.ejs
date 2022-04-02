@@ -1,81 +1,82 @@
 <% include ../../partials/staff/header.ejs %>
-<div class="container mb-5">
-    <div class="card mt-5 mx-auto w-lg-50">
-        <div class="card-header">
-            <div class="card-title text-center">
-                <h1 class="main-heading text-uppercase head-size"> Add Student</h1>
-            </div>
-        </div>
-
-        <div class="card-body">
-            <form action="/students/enrolls" method="post">
-                <div class="row">
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="">Name</label>
-                            <input class="form-control" type="text" name="firstname" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Email</label>
-                            <input class="form-control" type="email" name="email" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Contact No:</label>
-                            <input class="form-control" type="text" name="contact" required>
-                        </div>
-                        <div class="mb-3">
-                            <!-- <select for="" class="form-select">
-                        <option value="">python</option>
-                        <option value="">Js</option>
-                        <option value="">Java</option>
-        
-                    </select> -->
-                            <label for="">Course</label>
-                            <input class="form-control" type="text" value="python" name="course" required>
-        
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Address</label>
-                            <textarea class="form-control" rows="5"  name="address" required></textarea>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="">DOB</label>
-                            <input class="form-control" type="date" name="dob" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="" class="mt-3 mb-4">Gender</label> <br>
-                            <input type="radio" value="male" name="gender" required>male
-                            <input type="radio" value="female" name="gender" required>Female
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Qualification</label>
-                            <input class="form-control" type="text" name="qualification" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">State</label>
-                            <input class="form-control" type="text" name="state" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="">Guardian Name</label>
-                            <input class="form-control" type="text" name="guardian" required>
-                        </div>
-                    </div>
+    <div class="container mb-5">
+        <div class="card mt-5 mx-auto w-lg-50">
+            <div class="card-header">
+                <div class="card-title text-center">
+                    <h1 class="main-heading text-uppercase head-size"> Add Student</h1>
                 </div>
-        
-        
-                <button type="submit" class="btn bg-color-pr text-white">Register</button>
-              
-        
-            </form>
-            <button  class="btn bg-color-scs text-white  me-2 float-end" style="position:absolute;bottom:14.5px;left:100px;" onclick="window.history.back()">Back</button>
-            
-            
+            </div>
+
+            <div class="card-body">
+                <form action="/students/enrolls" method="post">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">Name</label>
+                                <input class="form-control" type="text" name="firstname" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Email</label>
+                                <input class="form-control" type="email" name="email" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Contact No:</label>
+                                <input class="form-control" type="text" name="contact" required>
+                            </div>
+                            <div class="mb-3">
+                                
+                                <select for="" class="form-select" name="course">
+                                    <% for (var i =0; i < data.length; i++){ %>
+                                    <option value="<%= data[i].courseName %>"><%= data[i].courseName %></option>
+                                    <%}%>
+                                </select>
+                                <!-- <label for="">Course</label>
+                            <input class="form-control" type="text" value="python" name="course" required> -->
+
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Address</label>
+                                <textarea class="form-control" rows="5" name="address" required></textarea>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="">DOB</label>
+                                <input class="form-control" type="date" name="dob" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="" class="mt-3 mb-4">Gender</label> <br>
+                                <input type="radio" value="male" name="gender" required>male
+                                <input type="radio" value="female" name="gender" required>Female
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Qualification</label>
+                                <input class="form-control" type="text" name="qualification" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">State</label>
+                                <input class="form-control" type="text" name="state" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="">Guardian Name</label>
+                                <input class="form-control" type="text" name="guardian" required>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <button type="submit" class="btn bg-color-pr text-white">Register</button>
+
+
+                </form>
+                <button class="btn bg-color-scs text-white  me-2 float-end"
+                    style="position:absolute;bottom:14.5px;left:100px;" onclick="window.history.back()">Back</button>
+
+
+            </div>
+
         </div>
 
     </div>
 
-</div>
-   
     <% include ../../partials/staff/footer.ejs %>

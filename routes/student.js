@@ -4,7 +4,7 @@ var router = express.Router();
 
 
 router.get('/', AllStudents);
-router.get('/add', AddStudent);
+router.get('/add/:id', AddStudent);
 router.post('/enrolls', SaveStudent);
 router.get('/delete/:id', DeleteStudentByID);
 router.post('/delete/:id', DeleteStudent);
@@ -40,23 +40,34 @@ function AllStudents(req, res, next) {
 
 function AddStudent(req, res, next) {
     sess = req.session;
-    var id = req.params.id;
+    var courseId = req.params.id;
     req.getConnection(function (err, connection) {
+
+        //if requestd url for student then this  will work and also passes the course id for selecting the course
+
         if (Object.keys(sess).length == 1) {
-            var query = connection.query('select * from courses where courseId = ?', id, function (err, rows) {
+            connection.query('select * from courses where courseId = ?', courseId, function (err, rows) {
                 if (err) {
                     console.log('err')
                 }
                 else {
-
-                    res.render('enroll_form', { data: rows });
-
+                    return res.render('enroll_form', { data: rows });
                 }
-            })
+            });
 
         }
+        //if requestd url for admin then this  will work and also passes all the courses avilable
+
         else if (sess.role == 'faculity') {
-            return res.render('staff/students/add_student');
+            connection.query('select * from courses ', function (err, rows) {
+                if (err) {
+                    console.log('err')
+                }
+                else {
+                    return res.render('staff/students/add_student', { data: rows });
+                }
+            });
+
         }
         else {
             return res.send('unautherised user please go back')
@@ -69,26 +80,37 @@ function AddStudent(req, res, next) {
 function SaveStudent(req, res, next) {
     var studentData = JSON.parse(JSON.stringify(req.body));
     sess = req.session;
+    var data = {
+        name: studentData.firstname,
+        email: studentData.email,
+        contactNo: studentData.contact,
+        course: studentData.course,
+        address: studentData.address,
+        dob: moment(studentData.dob).format('YYYY-MM-DD'),
+        gender: studentData.gender,
+        qualification: studentData.qualification,
+        state: studentData.state,
+        guardianName: studentData.guardian,
+        enquiry: false,
+        Cstatus: 'active'
+    };
+    console.log(data);
+
     if (Object.keys(sess).length == 1) {
-        return res.redirect('/users/login');
+        req.getConnection(function (err, connection) {
+            connection.query('insert into students set ?', data, function (err, rows) {
+                if (err) {
+                    console.log('Error', err)
+                }
+                else {
+                    return res.redirect('/')
+                }
+            });
+        });
     }
     else if (sess.role == 'faculity') {
-        var data = {
-            name: studentData.firstname,
-            email: studentData.email,
-            contactNo: studentData.contact,
-            course: studentData.course,
-            address: studentData.address,
-            dob: moment(studentData.dob).format('YYYY-MM-DD'),
-            gender: studentData.gender,
-            qualification: studentData.qualification,
-            state: studentData.state,
-            guardianName: studentData.guardian,
-            enquiry: false,
-            Cstatus: 'active'
-        };
         req.getConnection(function (err, connection) {
-            var query = connection.query('insert into students set ?', data, function (err, rows) {
+            connection.query('insert into students set ?', data, function (err, rows) {
                 if (err) {
                     console.log('Error', err)
                 }
