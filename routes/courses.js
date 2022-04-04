@@ -41,7 +41,7 @@ function ListCourses(req, res, next) {
           return res.render('admin/course/courses', { data: rows });
         }
         else {
-          return res.send('unautherised user please go back')
+          return res.render('acces_denied');
         }
       }
     });
@@ -60,7 +60,7 @@ function AddCourse(req, res, next) {
     return res.render('admin/course/add_course');
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 }
 
@@ -87,7 +87,7 @@ function SaveCourse(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 }
 
@@ -108,7 +108,7 @@ function GetCourseById(req, res, next) {
         return res.render('admin/course/view_course', { data: rows });
       }
       else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
       }
     });
   });
@@ -132,7 +132,7 @@ function EditCourse(req, res, next) {
         res.render('admin/course/edit_course', { data: rows });
       }
       else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
       }
     });
   });
@@ -163,7 +163,7 @@ function UpdateCourse(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 }
 
@@ -184,7 +184,7 @@ function DeleteCourse(req, res, next) {
         res.render('admin/course/delete_course', { data: rows, id: input });
       }
       else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
       }
     });
   });
@@ -209,7 +209,7 @@ function DeleteCourseById(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 
 }

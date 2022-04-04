@@ -42,7 +42,7 @@ function UserList(req, res, next) {
         return res.render('admin/user/users', { 'data': rows });
       }
       else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
       }
     });
   });
@@ -62,7 +62,7 @@ function AddUser(req, res, next) {
     return res.render('admin/user/add_user');
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 }
 
@@ -104,7 +104,7 @@ function SaveUser(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 
 }
@@ -132,7 +132,7 @@ function EditUser(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 
 
@@ -166,7 +166,7 @@ function UpdateUser(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 
 }
@@ -192,7 +192,7 @@ function GetUserById(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 }
 
@@ -213,7 +213,7 @@ function DeleteUser(req, res, next) {
         res.render('admin/user/delete_user', { data: rows, input: userId });
       }
       else {
-        return res.send('unautherised user please go back');
+        return res.render('acces_denied');;
       }
     });
   });
@@ -241,7 +241,7 @@ function DeleteUserById(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 
 

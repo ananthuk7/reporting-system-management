@@ -31,7 +31,7 @@ function EnrollmentList(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 
 }
@@ -64,7 +64,7 @@ function AddAnEnrollment(req, res, next) {
     })
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 }
 
@@ -97,7 +97,7 @@ function AddUserToEnrollment(req, res, next) {
     })
   }
   else {
-    return res.send('unautherised user please go back');
+    return res.render('acces_denied');;
   }
 }
 
@@ -160,7 +160,7 @@ function SearchEnrollment(req, res, next) {
     });
   }
   else {
-    return res.send('unautherised user please go back')
+    return res.render('acces_denied');
   }
 
 

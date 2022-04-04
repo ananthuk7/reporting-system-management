@@ -30,7 +30,7 @@ function AllStudents(req, res, next) {
                 return res.render('staff/students/students', { data: rows });
             }
             else {
-                return res.send('unautherised user please go back')
+                return res.render('acces_denied');
             }
         });
     });
@@ -70,7 +70,7 @@ function AddStudent(req, res, next) {
 
         }
         else {
-            return res.send('unautherised user please go back')
+            return res.render('acces_denied');
         }
     })
 }
@@ -121,7 +121,7 @@ function SaveStudent(req, res, next) {
         });
     }
     else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
     }
 
 };
@@ -148,7 +148,7 @@ function DeleteStudent(req, res, next) {
         });
     }
     else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
     }
 
 
@@ -174,7 +174,7 @@ function DeleteStudentByID(req, res, next) {
         });
     }
     else {
-        return res.send('unautherised user please go back')
+        return res.render('acces_denied');
     }
 
 }
@@ -196,7 +196,7 @@ function GetStudentByID(req, res, next) {
                 res.render('staff/students/view_student', { data: rows });
             }
             else {
-                return res.send('unautherised user please go back')
+                return res.render('acces_denied');
             }
         });
     });
@@ -214,7 +214,7 @@ function Status(req, res, next) {
         res.render('staff/students/edit_status', { id: studentId })
     }
     else {
-        return res.send('unautherised user please go back');
+        return res.render('acces_denied');;
     }
 }
 
@@ -251,7 +251,7 @@ function StatusUpdate(req, res, next) {
         });
     }
     else {
-        return res.send('unautherised user please go back');
+        return res.render('acces_denied');;
     }
 }
 
