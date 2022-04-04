@@ -242,7 +242,7 @@ function StatusUpdate(req, res, next) {
                     console.log(err);
                 }
             });
-            connection.query('update  enquires set ? where studentId = ?', [courseEndDate, StudentId], function (err, rows) {
+            connection.query('update  enrolls set ? where studentId = ?', [courseEndDate, StudentId], function (err, rows) {
                 if (err) {
                     console.log(err);
                 }

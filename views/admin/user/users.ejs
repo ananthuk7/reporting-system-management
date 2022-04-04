@@ -1,12 +1,20 @@
 <% include ../../partials/admin/header.ejs %>
     <div class="container">
-        <div class="card mt-5 mx-auto">
+        <div class="card mx-auto" style="width:300px;position:absolute; left:7.6rem; top:5rem;">
+            <div class="card-body">
+                <form action="/users/search" class="form d-flex">
+                    <input type="text" class="form-control" placeholder="Users" name="username" style="border-bottom:none;">
+                    <button type="submit" class="btn bg-color-pr text-white">Search</button>
+                </form>
+            </div>
+        </div>
+        <div class="card  mx-auto " style="margin-top:5rem;">
             <div class="card-header d-flex justify-content-between">
                 <div class="card-title">
-                  <h3>Users</h3>  
+                    <h3>Users</h3>
                 </div>
                 <div>
-                    <a href="/users/add" class="btn bg-color-pr text-white me-auto">Add New</a>
+                    <a href="/users/add" class="btn bg-color-pr text-white me-auto mt-2">Add New</a>
                 </div>
             </div>
 
@@ -56,13 +64,15 @@
                                         </ul>
                                     </td>
                                 </tr>
-                                <%} }else { %>
-                                    <td>no users list</td>
-                                    <% } %>
+                                <%}} %>
+
 
                         </tbody>
 
                     </table>
+                    <% if(data.length==0){ %>
+                        <p class="text-center">no users in this list</p>
+                        <% } %>
                 </div>
             </div>
 

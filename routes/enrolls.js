@@ -20,7 +20,7 @@ function EnrollmentList(req, res, next) {
   else if (sess.role == 'faculity') {
     var userId = sess.UserId;
     req.getConnection(function (err, connection) {
-      connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ?", userId, function (err, rows) {
+      connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ?", userId, function (err, rows) {
         if (err) {
         }
         else {
@@ -121,21 +121,21 @@ function SearchEnrollment(req, res, next) {
         return res.redirect('/enrolls')
       }
       else if (courseName != '' && startDate != '' && endDate != '') { // course name ,startdate ,endate is present
-        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate >= ? and e.startDate <= ? ", [userId, courseName, startDate, endDate], function (err, rows) {
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate >= ? and e.startDate <= ? ", [userId, courseName, startDate, endDate], function (err, rows) {
 
           return res.render('staff/enrolls/enroll', { data: rows });
 
         });
       }
       else if (courseName != '' && startDate === '' && endDate === '') { // both startdate and end date is absent and coursename is present
-        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =?", [userId, courseName], function (err, rows) {
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ? and s.course =?", [userId, courseName], function (err, rows) {
 
           return res.render('staff/enrolls/enroll', { data: rows });
 
         });
       }
       else if (courseName === '' && startDate != '' && endDate != '') {// courseName is absent and both startDate and endDate is present
-        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ?  and e.startDate >= ? and e.startDate <= ? ", [userId, startDate, endDate], function (err, rows) {
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ?  and e.startDate >= ? and e.startDate <= ? ", [userId, startDate, endDate], function (err, rows) {
 
           return res.render('staff/enrolls/enroll', { data: rows });
 
@@ -143,7 +143,7 @@ function SearchEnrollment(req, res, next) {
       }
       else if ((courseName === '' && startDate != '') || (courseName == '' && endDate != '')) { //course name is absent and enddate or startdate is present
         var date = startDate ? startDate : endDate;
-        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and e.startDate = ?", [userId, date], function (err, rows) {
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ? and e.startDate = ?", [userId, date], function (err, rows) {
 
           return res.render('staff/enrolls/enroll', { data: rows });
 
@@ -151,7 +151,7 @@ function SearchEnrollment(req, res, next) {
       }
       else if ((courseName != '' && startDate != '') || (courseName != '' && endDate != '')) {//course name is present and startdate or end date is present and
         var date = startDate ? startDate : endDate;
-        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate = ?", [userId, courseName, date], function (err, rows) {
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enrolls e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate = ?", [userId, courseName, date], function (err, rows) {
 
           return res.render('staff/enrolls/enroll', { data: rows });
 

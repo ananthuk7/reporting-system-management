@@ -17,6 +17,7 @@ router.post('/edit/:id', UpdateUser);
 router.get('/view/:id', GetUserById);
 router.get('/delete/:id', DeleteUser);
 router.post('/delete/:id', DeleteUserById);
+router.get('/search', searchUserByUsername);
 router.get('/login', LoginPage);
 router.post('/login', Login);
 router.get('/logout', Logout);
@@ -209,7 +210,7 @@ function DeleteUser(req, res, next) {
         return res.redirect('/users/login');
       }
       else if (sess.role == 'admin') {
-        res.render('admin/user/delete_user', { data: rows, input: input });
+        res.render('admin/user/delete_user', { data: rows, input: userId });
       }
       else {
         return res.send('unautherised user please go back');
@@ -244,6 +245,31 @@ function DeleteUserById(req, res, next) {
   }
 
 
+}
+
+//search user by username
+function searchUserByUsername(req, res, next) {
+  var userName = req.query.username;
+  if (Object.keys(sess).length == 1) {
+    return res.redirect('users/login')
+  }
+  else if (sess.role == 'admin') {
+    if (userName === '') {
+      return res.redirect('/users')
+    }
+    else {
+      req.getConnection(function (err, connection) {
+        query = connection.query('select * from users where userName =?',userName, function (err, rows) {
+
+          {
+            console.log(rows);
+            return res.render('admin/user/users', { 'data': rows });
+          }
+        });
+      });
+    }
+
+  }
 }
 
 // get login page
