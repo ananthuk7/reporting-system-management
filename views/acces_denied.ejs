@@ -5,14 +5,22 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <title>Document</title>
+    <title>Reporting System</title>
+    <style>
+        .shadow-box{
+            box-shadow: 0 0 0 10px rgb(230, 140, 140);
+        }
+        .text-shadows{
+            text-shadow: 2px 2px #e2d7d7;
+        }
+    </style>
 </head>
-<body>
+<body style="background-color:rgb(242, 230, 230)">
     <div class="container d-flex align-items-center justify-content-center " style="height:100vh;">
-        <div class="card" style="width:15rem;background-color:rgba(232, 142, 142, 0.848)">
+        <div class="card shadow-box" style="width:15rem;background-color:rgba(247, 161, 161, 0.848)" >
             <div class="card-body text-cemter">
-                <img src="" alt="">
-                <h3 class="text-danger" style="font-weight:900">Access Denied</h3>
+                <img src="/images/access.png" alt="access" class="d-block mx-auto" height="100" width="100">
+                <h3 class="text-danger text-shadows" style="font-weight:900">Access Denied</h3>
                 <button class="btn btn-danger d-block mx-auto mt-3" onclick="window.history.back()">Go Back</button>
             </div>
         </div>

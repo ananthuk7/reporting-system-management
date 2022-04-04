@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 
 
 var connection = require('express-myconnection');
-var mysql=require('mysql');
+var mysql = require('mysql');
 
 // var con = require('./config')
 
@@ -24,15 +24,15 @@ var enrollsRouter = require('./routes/enrolls');
 var app = express();
 
 app.use(
-  connection(mysql,{
+  connection(mysql, {
 
-      host: 'localhost',
-      user: 'root',
-      password : 'password',
-      port : 3306, //port mysql
-      database:'enrollment'
+    host: 'localhost',
+    user: 'root',
+    password: 'password',
+    port: 3306, //port mysql
+    database: 'enrollment'
 
-  },'pool') //or single
+  }, 'pool') //or single
 
 
 );
@@ -47,15 +47,19 @@ app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(bodyParser.json()); 
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(function (req, res, next) {
+  res.locals.session = req.session;
+  next();
+});
 
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/courses', coursesRouter);
-app.use('/students',studentsRouter);
-app.use('/enrolls',enrollsRouter);
+app.use('/students', studentsRouter);
+app.use('/enrolls', enrollsRouter);
 
 
 // catch 404 and forward to error handler

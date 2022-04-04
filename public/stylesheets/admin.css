@@ -30,6 +30,12 @@ th{
     outline: 0;
     box-shadow: none;
 }
+.hide-login{
+    display:none;
+}
+.hide-logout{
+    display:none;
+}
 .main-heading{
     font-size:2rem;
 }
