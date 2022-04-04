@@ -1,10 +1,12 @@
 
 var express = require('express');
+var moment = require('moment');
 var router = express.Router();
 
 router.get('/', EnrollmentList);
 router.get('/add/:id', AddUserToEnrollment);
 router.post('/add', AddAnEnrollment);
+router.get('/search', SearchEnrollment);
 
 
 
@@ -22,14 +24,14 @@ function EnrollmentList(req, res, next) {
         if (err) {
         }
         else {
-          console.log(rows)
-          res.render('staff/enrolls/enroll', { data: rows });
+          // console.log(rows)
+          return res.render('staff/enrolls/enroll', { data: rows });
         }
       });
     });
   }
   else {
-    res.send('unautherised user please go back')
+    return res.send('unautherised user please go back')
   }
 
 }
@@ -81,22 +83,88 @@ function AddUserToEnrollment(req, res, next) {
   if (Object.keys(sess).length == 1) {
     return res.redirect('/users/login')
   }
-  else if (sess.role == 'faculity'){
-  req.getConnection(function (err, connection) {
-    var query = connection.query('update students set ? where id =?', [data, studentId], function (err, rows) {
-      if (err) {
-        console.log(err);
+  else if (sess.role == 'faculity') {
+    req.getConnection(function (err, connection) {
+      connection.query('update students set ? where id =?', [data, studentId], function (err, rows) {
+        if (err) {
+          console.log(err);
+        }
+        else {
+          console.log(sess.UserId)
+          res.render('staff/enrolls/add_enroll', { userId: sess.UserId, sId: studentId });
+        }
+      });
+    })
+  }
+  else {
+    return res.send('unautherised user please go back');
+  }
+}
+
+// search the enrollment based on course start date and end date
+
+function SearchEnrollment(req, res, next) {
+  sess = req.session;
+  var input = req.query;
+  var userId = sess.UserId;
+  var courseName = input.course;
+  var startDate = input.startDate;
+  var endDate = input.endDate;
+
+  if (Object.keys(sess).length == 1) {
+    return res.redirect('/users/login')
+  }
+  else if (sess.role == 'faculity') {
+    req.getConnection(function (err, connection) {
+
+      if (courseName === '' && startDate === '' && endDate === '') { //both of them are empty
+        return res.redirect('/enrolls')
       }
-      else {
-        console.log(sess.UserId)
-        res.render('staff/enrolls/add_enroll', { userId: sess.UserId, sId: studentId });
+      else if (courseName != '' && startDate != '' && endDate != '') { // course name ,startdate ,endate is present
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate >= ? and e.startDate <= ? ", [userId, courseName, startDate, endDate], function (err, rows) {
+
+          return res.render('staff/enrolls/enroll', { data: rows });
+
+        });
+      }
+      else if (courseName != '' && startDate === '' && endDate === '') { // both startdate and end date is absent and coursename is present
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =?", [userId, courseName], function (err, rows) {
+
+          return res.render('staff/enrolls/enroll', { data: rows });
+
+        });
+      }
+      else if (courseName === '' && startDate != '' && endDate != '') {// courseName is absent and both startDate and endDate is present
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ?  and e.startDate >= ? and e.startDate <= ? ", [userId, startDate, endDate], function (err, rows) {
+
+          return res.render('staff/enrolls/enroll', { data: rows });
+
+        });
+      }
+      else if ((courseName === '' && startDate != '') || (courseName == '' && endDate != '')) { //course name is absent and enddate or startdate is present
+        var date = startDate ? startDate : endDate;
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and e.startDate = ?", [userId, date], function (err, rows) {
+
+          return res.render('staff/enrolls/enroll', { data: rows });
+
+        });
+      }
+      else if ((courseName != '' && startDate != '') || (courseName != '' && endDate != '')) {//course name is present and startdate or end date is present and
+        var date = startDate ? startDate : endDate;
+        connection.query("select s.name,s.email,s.contactNo,s.course,s.Cstatus,e.startDate,e.EndDate from enquires e join students  s where s.id = e.studentId and e.userId = ? and s.course =? and e.startDate = ?", [userId, courseName, date], function (err, rows) {
+
+          return res.render('staff/enrolls/enroll', { data: rows });
+
+        });
       }
     });
-  })
-}
-else{
-  return res.send('unautherised user please go back');
-}
+  }
+  else {
+    return res.send('unautherised user please go back')
+  }
+
+
+
 }
 
 
